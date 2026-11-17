@@ -4,14 +4,9 @@
 
 ### 把 LibreTV 装进你的手机和电视 —— 原生客户端、免安装、数据只留在本机
 
-[![Stars](https://img.shields.io/github/stars/wangshaojie/LibreTV-App?style=flat-square&label=Stars&color=40dec2)](https://github.com/wangshaojie/LibreTV-App/stargazers)
-[![Forks](https://img.shields.io/github/forks/wangshaojie/LibreTV-App?style=flat-square&label=Forks&color=40dec2)](https://github.com/wangshaojie/LibreTV-App/network/members)
-[![Release](https://img.shields.io/github/v/release/wangshaojie/LibreTV-App?style=flat-square&label=Release&color=40dec2)](https://github.com/wangshaojie/LibreTV-App/releases/latest)
-[![Android](https://img.shields.io/badge/Android-5.0%2B-40dec2?style=flat-square&logo=android&logoColor=black)](https://github.com/wangshaojie/LibreTV-App/releases)
-[![Windows](https://img.shields.io/badge/Windows-10%2F11%20x64-0078d4?style=flat-square&logo=windows&logoColor=white)](https://github.com/wangshaojie/LibreTV-App/releases)
 [![License](https://img.shields.io/badge/license-AGPL--3.0--later-blue?style=flat-square)](LICENSE)
 
-[**下载 Android APK**](https://github.com/wangshaojie/LibreTV-App/releases/download/android-v2.0.24/LibreTV-App-Android-v2.0.24-universal-android5.apk) · [**下载 Windows 免安装版（7z · 110 MB）**](https://github.com/wangshaojie/LibreTV-App/releases/download/v2.19.3-desktop.11/LibreTV-App-v2.19.3-desktop.11-Windows-x64.7z) · [**Windows ZIP · 159 MB**](https://github.com/wangshaojie/LibreTV-App/releases/download/v2.19.3-desktop.11/LibreTV-App-v2.19.3-desktop.11-Windows-x64.zip)
+[**前往夸克网盘下载安装包**](https://pan.quark.cn/s/7474a6f70f2c) · 打开链接后请按设备选择对应子文件夹：「01 安卓4.3老电视（坚果G1等）」「02 安卓手机（Android 5.0+）」「03 安卓电视（Android 5.0+）」「04 Windows 电脑版」
 
 </div>
 
@@ -19,7 +14,7 @@
 
 ## 这是什么
 
-**静观 TV** 是基于 [LibreSpark/LibreTV](https://github.com/LibreSpark/LibreTV) 的**非官方跨平台客户端**。
+**静观 TV** 是基于 LibreSpark/LibreTV 的**非官方跨平台客户端**。
 
 原版是一个需要自己用 Docker 部署的网页应用。我们把它做成了两个可以直接用的东西：
 
@@ -60,19 +55,28 @@
 
 ## 下载
 
+网盘内按子文件夹区分版本，请先确认设备再进入对应文件夹：
+
+- 「01 安卓4.3老电视（坚果G1等）」—— 安卓 4.3 老电视、老盒子（如坚果 G1）
+- 「02 安卓手机（Android 5.0+）」—— 安卓手机 / 平板
+- 「03 安卓电视（Android 5.0+）」—— 安卓电视 / 电视盒子（Android 5.0 及以上）
+- 「04 Windows 电脑版」—— Windows 10 / 11 x64 免安装版
+
+**网盘地址（永久有效）：<https://pan.quark.cn/s/7474a6f70f2c>**
+
 ### Windows 免安装版
 
 <div align="center">
 
-**[⬇ 下载 Windows 7z 包](https://github.com/wangshaojie/LibreTV-App/releases/download/v2.19.3-desktop.11/LibreTV-App-v2.19.3-desktop.11-Windows-x64.7z)** · **约 110 MB** &nbsp;·&nbsp; **[⬇ 下载 Windows ZIP 包](https://github.com/wangshaojie/LibreTV-App/releases/download/v2.19.3-desktop.11/LibreTV-App-v2.19.3-desktop.11-Windows-x64.zip)** · **约 159 MB** &nbsp;·&nbsp; [查看所有版本](https://github.com/wangshaojie/LibreTV-App/releases)
+**[⬇ 下载 Windows 7z 包（请进「04 Windows 电脑版」文件夹）](https://pan.quark.cn/s/7474a6f70f2c)** · **约 110 MB**
 
 </div>
 
 版本 `2.19.3-desktop.11` · Windows 10 / 11 x64 · 解压后打开 `LibreTV-App` 文件夹，双击 `静观TV.exe` 即可运行
 
-两个包内容完全相同，只是压缩方式不同：**7z 包小约三分之一**，Windows 11 22H2 以后资源管理器可直接解压；Windows 10 或习惯 ZIP 的用户下载 ZIP 包即可。
+安装包为 **7z 压缩格式**，Windows 11 22H2 以后资源管理器可直接解压；Windows 10 或较早系统可先安装 7-Zip、WinRAR 等解压工具再解压。
 
-ZIP 内附发布者的数据快照（含初始源配置与设置）。升级时用新版文件夹里的程序文件覆盖旧文件夹（`LibreTV-Data` 除外），即可保留你自己的数据。
+7z 包内附发布者的数据快照（含初始源配置与设置）。升级时用新版文件夹里的程序文件覆盖旧文件夹（`LibreTV-Data` 除外），即可保留你自己的数据。
 
 > **2.19.2-desktop.6 起改为目录分发**：早先的单文件 EXE 每次启动都要把约 460 MB 运行时重新解压到临时目录并被杀毒软件逐个扫描，窗口要等近 30 秒；改为目录分发后启动约 **1 秒**。功能完全一致。
 
@@ -82,13 +86,15 @@ ZIP 内附发布者的数据快照（含初始源配置与设置）。升级时�
 
 <div align="center">
 
-**[⬇ 下载 Android APK](https://github.com/wangshaojie/LibreTV-App/releases/download/android-v2.0.24/LibreTV-App-Android-v2.0.24-universal-android5.apk)** &nbsp;·&nbsp; [查看所有版本](https://github.com/wangshaojie/LibreTV-App/releases)
+**[⬇ 下载 Android APK（请进「02 安卓手机（Android 5.0+）」或「03 安卓电视（Android 5.0+）」文件夹）](https://pan.quark.cn/s/7474a6f70f2c)**
 
 </div>
 
 版本 `2.0.24` · 最低 Android 5.0 · 手机与 Android TV 通用 · 只有一个安装包
 
-> 手机直接下载安装；电视可用 U 盘或电视文件管理器打开 APK。两端均为**同一安装包覆盖升级**，保留源配置、收藏和观看记录，无需先卸载。
+> 手机请进「02 安卓手机（Android 5.0+）」，安卓电视请进「03 安卓电视（Android 5.0+）」，两端为**同一安装包**，可直接覆盖升级，保留源配置、收藏和观看记录，无需先卸载。
+
+> **安卓 4.3 老电视（坚果 G1 等）**：请进「01 安卓4.3老电视（坚果G1等）」文件夹，那里是面向老系统的改造版安装包。
 
 ## 界面预览
 
@@ -123,7 +129,7 @@ ZIP 内附发布者的数据快照（含初始源配置与设置）。升级时�
 
 **Windows**
 
-1. 下载 ZIP 包，**完整解压**到有写入权限的文件夹。
+1. 从夸克网盘「04 Windows 电脑版」文件夹下载 7z 包，**完整解压**到有写入权限的文件夹。
 2. 打开解压出来的 `LibreTV-App` 文件夹，双击 `静观TV.exe`（约 1 秒启动）。
 3. 在「设置 → 源管理」中管理自己的片源：M3U 播放列表加到**直播源**，Apple CMS JSON API 加到**点播源**。
 4. 首页用于影片搜索，顶部「直播」用于浏览 M3U 频道和分组。
@@ -190,8 +196,7 @@ gradle -p android testDebugUnitTest assembleDebug
 
 本项目是**非官方衍生项目**，上游项目及原作者的贡献和署名予以保留。
 
-- 上游项目：[LibreSpark/LibreTV](https://github.com/LibreSpark/LibreTV) · 版本 `2.19.2` · 基础提交 `dd1c744c40d60ee553bd9f7eb3df55dd79a8f7dc`
-- 原项目说明：[README.upstream.md](README.upstream.md)
+- 上游项目：LibreSpark/LibreTV · 版本 `2.19.2` · 基础提交 `dd1c744c40d60ee553bd9f7eb3df55dd79a8f7dc`
 - 本仓库新增：Windows 便携封装、系统代理网络适配、Android 手机 / TV 原生客户端、官方片源清单远程更新、批量测活、构建 / 验证脚本和发布文档
 
 LibreTV 和本项目按 **AGPL-3.0-or-later** 提供，完整条款见 [LICENSE](LICENSE)。Electron、Chromium 及其他第三方组件遵循各自许可证。
