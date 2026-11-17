@@ -17,7 +17,6 @@ import java.util.concurrent.*;
  * 扁平化：层次靠纯色块（背景色差异）拉开，不靠描边与投影；
  * 强调色只出现在主按钮、当前集和评分上。
  */
-@androidx.media3.common.util.UnstableApi
 public final class DetailActivity extends Activity {
     // 切源时新请求要能立刻发出去，不能排在旧请求后面等 ——
     // 旧请求即使回来也会被 generation 判定为过期丢弃，所以并发是安全的。

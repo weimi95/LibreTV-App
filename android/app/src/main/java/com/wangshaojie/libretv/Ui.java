@@ -418,9 +418,9 @@ final class Ui {
     }
     /** 统一顶栏：左箭头返回 + 标题（+ 右侧动作） */
     static LinearLayout topBar(Context c,String title,Runnable back,Runnable home){LinearLayout bar=row(c);bar.setPadding(dp(c,10),dp(c,8),dp(c,10),dp(c,8));if(back!=null)bar.addView(icon(c,"back","返回上一页",back));TextView titleView=heading(c,title);titleView.setSingleLine(true);titleView.setEllipsize(android.text.TextUtils.TruncateAt.END);bar.addView(titleView,new LinearLayout.LayoutParams(0,-2,1));if(home!=null)bar.addView(icon(c,"home","回首页",home));return bar;}
-    static void inset(android.app.Activity a,View root){root.setBackgroundColor(BG);root.setOnApplyWindowInsetsListener((v,insets)->{safeInsets(v,insets);return insets;});if(tv(a))a.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);else lightBars(a);}
+    static void inset(android.app.Activity a,View root){root.setBackgroundColor(BG);if(Build.VERSION.SDK_INT>=20)root.setOnApplyWindowInsetsListener((v,insets)->{safeInsets(v,insets);return insets;});if(tv(a))a.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);else lightBars(a);}
     /** 播放页用深色底：视频观看需要沉浸感，浅色边框非常刺眼 */
-    static void insetDark(android.app.Activity a,View root){root.setBackgroundColor(DARK);root.setOnApplyWindowInsetsListener((v,insets)->{safeInsets(v,insets);return insets;});if(tv(a))a.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+    static void insetDark(android.app.Activity a,View root){root.setBackgroundColor(DARK);if(Build.VERSION.SDK_INT>=20)root.setOnApplyWindowInsetsListener((v,insets)->{safeInsets(v,insets);return insets;});if(tv(a))a.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
     /**
      * 系统栏避让的兜底入口。
      *

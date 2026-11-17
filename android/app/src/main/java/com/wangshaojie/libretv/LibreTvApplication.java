@@ -1,6 +1,6 @@
 package com.wangshaojie.libretv;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
@@ -11,7 +11,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Date;
 
-public final class LibreTvApplication extends Application {
+public final class LibreTvApplication extends MultiDexApplication {
     /** 崩溃现场落盘位置：应用私有目录，不需要任何权限，卸载即清除。 */
     private static final String CRASH_FILE="crash.log";
     @Override public void onCreate(){

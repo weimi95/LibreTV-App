@@ -5,7 +5,6 @@ import java.util.*;
 import java.io.IOException;
 import org.json.*;
 
-@androidx.media3.common.util.UnstableApi
 final class Discover {
     static String key(String type,String tag){return "discover:"+type+":"+tag;}
     static List<Catalog.Item> load(Store store,String type,String tag,int offset)throws Exception{

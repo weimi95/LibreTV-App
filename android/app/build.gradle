@@ -5,12 +5,13 @@ android {
     compileSdk 35
     defaultConfig {
         applicationId 'com.wangshaojie.libretv'
-        minSdk 21
+        minSdk 18
         targetSdk 35
         versionCode 29
         versionName '2.0.24'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         resValue 'string', 'app_name', '静观 TV'
+        multiDexEnabled true
     }
     buildFeatures { buildConfig true }
     signingConfigs {
@@ -37,13 +38,10 @@ android {
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 
 dependencies {
-    implementation 'androidx.media3:media3-exoplayer:1.5.1'
-    implementation 'androidx.media3:media3-exoplayer-hls:1.5.1'
-    implementation 'androidx.media3:media3-exoplayer-dash:1.5.1'
-    implementation 'androidx.media3:media3-ui:1.5.1'
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.json:json:20240303'
-    androidTestImplementation 'androidx.test:runner:1.6.2'
-    androidTestImplementation 'androidx.test:rules:1.6.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    // Android 4.3 兼容：Media3 全系硬要求 API 21，回退到 ExoPlayer 2.19.1（最后一个支持 minSdk 16 的版本）
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.19.1'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.19.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.19.1'
+    // Dalvik 没有 ART 的自动分包，单 dex 64K 方法数上限需要 multidex 兜底
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

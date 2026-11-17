@@ -12,7 +12,6 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.*;
 
-@androidx.media3.common.util.UnstableApi
 public final class ProbeActivity extends Activity {
     private final Handler handler=new Handler(Looper.getMainLooper());
     private final ExecutorService loader=Executors.newSingleThreadExecutor();

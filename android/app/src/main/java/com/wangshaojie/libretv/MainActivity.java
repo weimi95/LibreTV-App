@@ -14,7 +14,6 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.io.*;
 
-@androidx.media3.common.util.UnstableApi
 public final class MainActivity extends Activity {
     private Store store;
     private LinearLayout content;

@@ -7,14 +7,20 @@ import android.graphics.drawable.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
-import androidx.media3.common.*;
-import androidx.media3.datasource.DefaultHttpDataSource;
-import androidx.media3.datasource.DefaultDataSource;
-import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.exoplayer.DefaultRenderersFactory;
-import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
-import androidx.media3.exoplayer.source.MediaSource;
-import androidx.media3.ui.PlayerView;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.PlaybackException;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.audio.AudioAttributes;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSource;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.ui.PlayerView;
 import org.json.*;
 import java.util.*;
 
@@ -36,7 +42,6 @@ import java.util.*;
  *   - 不用 View.animate()（WeakReference 目标为空会 abort）
  *   - 可见性判定用 isShown()，不用 getWindowVisibility()
  */
-@androidx.media3.common.util.UnstableApi
 public final class PlayerActivity extends Activity {
     private ExoPlayer player;private PlayerView video;private Store store;private List<Catalog.Item> items=new ArrayList<>();private int index;
     private FrameLayout root;private LinearLayout titleBar,panel;private TextView title,status,osd,clock;private SeekBar seek;private Button playButton,prevButton,nextButton;
@@ -92,7 +97,7 @@ public final class PlayerActivity extends Activity {
         // 视频要铺满整块屏幕，所以不把系统栏内边距加到根容器上（insetDark 默认会加），
         // 这里把内边距清零，只保留它的深色背景与沉浸式系统栏设置。
         root.setPadding(0,0,0,0);
-        root.setOnApplyWindowInsetsListener((v,insets)->{v.setPadding(0,0,0,0);return insets;});
+        if(android.os.Build.VERSION.SDK_INT>=20)root.setOnApplyWindowInsetsListener((v,insets)->{v.setPadding(0,0,0,0);return insets;});
         // 炭黑底（不是纯黑，纯黑在老电视上边缘会发毛），视频铺满后基本看不见它，
         // 露出来的那几像素缝隙也跟画面融在一起。
         root.setBackground(new android.graphics.drawable.ColorDrawable(0xFF0B0D10));
@@ -855,8 +860,8 @@ public final class PlayerActivity extends Activity {
     // 和播放页的深色沉浸完全是两套东西，焦点反馈也不统一。
     private void pickEpisode(){String[] labels=new String[items.size()];for(int n=0;n<labels.length;n++)labels[n]=items.get(n).title;UiDialog.list(this,"选集",labels,index,n->{save();index=n;resume=store.position(items.get(index).url);prepare();});}
     // 当前倍速自己记一份：media3 这个版本的 ExoPlayer 没有 getPlaybackSpeed()，读不到当前值
-    private void pickSpeed(){final float[] speeds={.75f,1f,1.25f,1.5f,2f};String[] labels={"0.75×","1.0×","1.25×","1.5×","2.0×"};int checked=1;for(int n=0;n<speeds.length;n++)if(Math.abs(playbackSpeed-speeds[n])<0.01f)checked=n;UiDialog.list(this,"播放速度",labels,checked,n->{playbackSpeed=speeds[n];if(player!=null)player.setPlaybackSpeed(playbackSpeed);});}
-    private void pickRatio(){String[] labels={"适应屏幕","填满屏幕","裁切放大"};UiDialog.list(this,"画面显示",labels,-1,n->video.setResizeMode(new int[]{androidx.media3.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT,androidx.media3.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL,androidx.media3.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM}[n]));}
+    private void pickSpeed(){final float[] speeds={.75f,1f,1.25f,1.5f,2f};String[] labels={"0.75×","1.0×","1.25×","1.5×","2.0×"};int checked=1;for(int n=0;n<speeds.length;n++)if(Math.abs(playbackSpeed-speeds[n])<0.01f)checked=n;UiDialog.list(this,"播放速度",labels,checked,n->{playbackSpeed=speeds[n];if(player!=null)player.setPlaybackParameters(new PlaybackParameters(playbackSpeed));});}
+    private void pickRatio(){String[] labels={"适应屏幕","填满屏幕","裁切放大"};UiDialog.list(this,"画面显示",labels,-1,n->video.setResizeMode(new int[]{com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT,com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL,com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM}[n]));}
     private void save(){if(player!=null&&!items.isEmpty()){resume=player.getCurrentPosition();autoplay=player.getPlayWhenReady();store.remember(items.get(index),resume);}}
     private void change(int delta){int next=index+delta;if(next<0||next>=items.size()){Ui.toast(this,"没有更多剧集");return;}save();index=next;resume=store.position(items.get(index).url);autoplay=true;prepare();}
     // Hiding the system bars in an immersive way makes Android 11 and newer raise the

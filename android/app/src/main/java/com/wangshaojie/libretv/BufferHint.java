@@ -1,6 +1,6 @@
 package com.wangshaojie.libretv;
 
-import androidx.media3.common.Player;
+import com.google.android.exoplayer2.Player;
 
 /**
  * 「缓冲中」提示的状态机 —— 纯逻辑，不碰任何 Android 控件，可以直接单测。

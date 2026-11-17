@@ -5,7 +5,6 @@ import java.io.*;
 import java.util.*;
 import org.json.*;
 
-@androidx.media3.common.util.UnstableApi
 final class Playback {
     static void open(Context context,List<Catalog.Item> items,int index){
         try{JSONArray json=new JSONArray();for(Catalog.Item i:items){JSONObject compact=i.json();compact.remove("summary");json.put(compact);}File file=new File(context.getCacheDir(),"play-"+UUID.randomUUID()+".json");try(OutputStream out=new FileOutputStream(file)){out.write(json.toString().getBytes("UTF-8"));}context.startActivity(new Intent(context,PlayerActivity.class).putExtra("playlistFile",file.getName()).putExtra("index",index));}
